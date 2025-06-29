@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Resume Analyzer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c') no-repeat center center/cover;
+      animation: fadeIn 2s ease-in;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #f8f9fa;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 3px #333;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      max-width: 600px;
+      margin: 40px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      animation: slideUp 1.5s ease;
+    }
+
+    input[type="file"], textarea, input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: #00c9a7;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #008d7f;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #ffeaa7;
+    }
+
+    ul {
+      list-style-type: square;
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 0;
+    }
+
+    li {
+      padding: 5px;
+      font-size: 16px;
+      color: #f0f0f0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Smart Resume Analyzer</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    <label for="resume">Upload Resume (PDF):</label>
+    <input type="file" name="resume" id="resume" required>
+
+    <label for="jobdesc">Paste Job Description:</label>
+    <textarea name="jobdesc" id="jobdesc" rows="10" placeholder="Paste the job description here..." required></textarea>
+
+    <input type="submit" value="Analyze">
+  </form>
+
+  {% if result %}
+    <h2>Match Score: {{ result.score }}%</h2>
+    <h3>Missing Skills:</h3>
+    <ul>
+      {% for skill in result.missing %}
+        <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</body>
+</html>
