@@ -88,6 +88,6 @@ Missing Skills: ['flask', 'rest', 'docker']
 
 ## 👤 Author
 
-**Manju THershini**  
+**Manju Thershini**  
 `B.Tech CSE | Vel Tech High Tech Engineering College`  
 
